@@ -11,14 +11,15 @@ import (
 )
 
 const (
-	TemplateDir = "views/layout"
+	LayoutDir   = "view/layout/"
+	TemplateDir = "view/"
 	TemplateExt = ".gohtml"
 )
 
 type HTML struct {
 	Template *template.Template
 	Layout   string
-	l        *log.Logger
+	l        log.Logger
 }
 
 func NewHTML(layout string, files ...string) *HTML {
@@ -30,7 +31,7 @@ func NewHTML(layout string, files ...string) *HTML {
 		panic(err)
 	}
 
-	return &View{
+	return &HTML{
 		Template: t,
 		Layout:   layout,
 		l:        log.NewNopLogger(),
@@ -38,7 +39,7 @@ func NewHTML(layout string, files ...string) *HTML {
 
 }
 
-func (h *HTML) SetLogger(l *log.Logger) {
+func (h *HTML) SetLogger(l log.Logger) {
 	h.l = l
 }
 
@@ -47,7 +48,7 @@ func (h *HTML) Render(w http.ResponseWriter, r *http.Request, data interface{}) 
 
 	err := h.Template.ExecuteTemplate(&buf, h.Layout, nil)
 	if err != nil {
-		l.Log("err", err)
+		h.l.Log("err", err)
 		http.Error(w, `Something went wrong. If the problem persists,
 please email arod.louis@gmail.com`, http.StatusInternalServerError)
 		return
