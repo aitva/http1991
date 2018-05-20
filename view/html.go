@@ -46,7 +46,7 @@ func (h *HTML) SetLogger(l log.Logger) {
 func (h *HTML) Render(w http.ResponseWriter, r *http.Request, data interface{}) {
 	var buf bytes.Buffer
 
-	err := h.Template.ExecuteTemplate(&buf, h.Layout, nil)
+	err := h.Template.ExecuteTemplate(&buf, h.Layout, data)
 	if err != nil {
 		h.l.Log("err", err)
 		http.Error(w, `Something went wrong. If the problem persists,

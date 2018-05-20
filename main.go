@@ -20,12 +20,11 @@ func main() {
 	{
 		v := view.NewHTML("engine", "static/index")
 		r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-			v.Render(w, r, nil)
+			v.Render(w, r, view.Engine{Title: "Evil 1991"})
 		})
 	}
 	{
 		staticHandler := http.FileServer(http.Dir("./static/"))
-		// staticHandler = http.StripPrefix("/static/", staticHandler)
 		r.PathPrefix("/").Handler(staticHandler)
 	}
 
