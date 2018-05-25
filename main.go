@@ -17,16 +17,26 @@ func main() {
 	l = log.With(l, "ts", log.DefaultTimestampUTC, "caller", log.DefaultCaller)
 
 	r := mux.NewRouter()
+	views := []*view.HTML{}
 	{
-		v := view.NewHTML("default", "static/index")
+		v := view.NewHTML(
+			"default",
+			[]string{"static/index"},
+			view.HTMLSetLogger(l),
+		)
 		r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 			v.Render(w, r, view.Engine{Title: "Evil 1991"})
 		})
+		views = append(views, v)
 	}
 	{
 		staticHandler := http.FileServer(http.Dir("./static/"))
 		r.PathPrefix("/").Handler(staticHandler)
 	}
+
+	hw := view.NewHTMLWatcher(l, views...)
+	defer hw.Close()
+	go hw.Watch()
 
 	s := http.Server{
 		Addr:    addr,
