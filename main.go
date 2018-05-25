@@ -17,6 +17,7 @@ func main() {
 	l = log.With(l, "ts", log.DefaultTimestamp, "caller", log.DefaultCaller)
 
 	r := mux.NewRouter()
+	r.StrictSlash(true)
 	views := []*view.HTML{}
 	{
 		v := view.NewHTML(
@@ -26,6 +27,17 @@ func main() {
 		)
 		r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 			v.Render(w, r, view.Engine{Title: "Evil 1991"})
+		})
+		views = append(views, v)
+	}
+	{
+		v := view.NewHTML(
+			"engine",
+			[]string{"game/intern-office"},
+			view.HTMLSetLogger(l),
+		)
+		r.HandleFunc("/game/intern-office/", func(w http.ResponseWriter, r *http.Request) {
+			v.Render(w, r, view.Engine{Title: "Intern Office"})
 		})
 		views = append(views, v)
 	}
