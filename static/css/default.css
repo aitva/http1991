@@ -1,0 +1,43 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.container {
+    max-width: 768px;
+    margin: 0 auto;
+}
+
+.header {
+    background-color: lightblue;
+    padding: 1em 0;
+}
+
+.main {
+    background-color: lightgreen;
+    padding: 1em 0;
+}
+
+.button {
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    padding: 0.2em 0.3em;
+    border-radius: 2px;
+    border: 1px solid black;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.button:hover {
+    box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-centered {
+    margin: 0 auto;
+}

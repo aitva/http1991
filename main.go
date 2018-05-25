@@ -18,7 +18,7 @@ func main() {
 
 	r := mux.NewRouter()
 	{
-		v := view.NewHTML("engine", "static/index")
+		v := view.NewHTML("default", "static/index")
 		r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 			v.Render(w, r, view.Engine{Title: "Evil 1991"})
 		})
