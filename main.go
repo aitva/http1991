@@ -14,7 +14,7 @@ const addr = ":1991"
 func main() {
 	w := log.NewSyncWriter(os.Stdout)
 	l := log.NewLogfmtLogger(w)
-	l = log.With(l, "ts", log.DefaultTimestampUTC, "caller", log.DefaultCaller)
+	l = log.With(l, "ts", log.DefaultTimestamp, "caller", log.DefaultCaller)
 
 	r := mux.NewRouter()
 	views := []*view.HTML{}
