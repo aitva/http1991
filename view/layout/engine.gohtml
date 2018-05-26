@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ .Title }}</title>
+
     <link rel="stylesheet" href="/css/engine.css">
+    <script src="/js/asset/webcomponents-bundle.js"></script>
+    <script type="module" src="/js/asset/lit-element.bundle.js"></script>
+    {{template "component" .}}
 </head>
 <body>
     <header class="header">
