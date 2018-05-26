@@ -1,11 +1,11 @@
-import { LitElement, html } from '../lit-element.bundle.js';
+import { LitElement, html } from "../lit-element.bundle.js";
 
 class EvilOffice extends LitElement {
 
     static get properties() {
         return {
             mood: String
-        }
+        };
     }
 
     _render({ mood }) {
@@ -15,4 +15,4 @@ class EvilOffice extends LitElement {
 
 }
 
-customElements.define('evil-office', EvilOffice);
+customElements.define("evil-office", EvilOffice);

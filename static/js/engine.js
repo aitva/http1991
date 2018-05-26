@@ -1,6 +1,6 @@
 /**
  * engine.js contains the code for the game engine.
  */
-class Engine {
+export class Engine {
     constructor() {}
 }
